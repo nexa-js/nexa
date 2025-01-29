@@ -1,23 +1,24 @@
 const { NexaLogger } = require('./logger');
-const { zodMock } = require('@anatine/zod-mock');
+const { generateMock } = require('@anatine/zod-mock');
+const { findSchema } = require('../utils/schemas');
 
 const UnifiedResponse = async (req, res, schemas, handler, options) => {
     NexaLogger.info(`Route executed: [${req.method}] ${req.originalUrl}`);
 
-    let errors = null;
+    let errors = undefined;
 
     if (!Array.isArray(schemas)) {
         schemas = [schemas, null];
     }
 
-    const requestSchema = schemas?.[0];
-    const responseSchema = schemas?.[1];
+    const requestSchema = findSchema(schemas?.[0]);
+    const responseSchema = findSchema(schemas?.[1]) || findSchema(schemas?.[0]);
 
     if (requestSchema?.query) {
         const parsedQuery = requestSchema.query.safeParse(req.query);
         if (!parsedQuery.success) {
             errors = parsedQuery.error.format();
-            return res.json({ status: 400, message: 'Invalid query parameters', data: null, errors });
+            return res.json({ status: 400, message: 'Invalid query parameters', errors });
         }
     }
 
@@ -25,7 +26,7 @@ const UnifiedResponse = async (req, res, schemas, handler, options) => {
         const parsedBody = requestSchema.body.safeParse(req.body);
         if (!parsedBody.success) {
             errors = parsedBody.error.format();
-            return res.json({ status: 400, message: 'Invalid request body', data: null, errors });
+            return res.json({ status: 400, message: 'Invalid request body', errors });
         }
     }
 
@@ -35,16 +36,17 @@ const UnifiedResponse = async (req, res, schemas, handler, options) => {
         const parsedResponse = responseSchema?.safeParse(data);
         if (!parsedResponse.success) {
             errors = parsedResponse.error.format();
-            return res.json({ status: 500, message: "Response validation failed", data: null, errors });
+            return res.json({ status: 500, message: "Response validation failed", errors });
         }
     }
-    const mockSchema = responseSchema?.response ?? requestSchema?.response
-    data = data ?? zodMock(mockSchema);
+
+    data = data ?? generateMock(responseSchema.response, {
+        recordKeysLength: 10
+    });
 
     return res.json({
         status: 200,
-        message: '',
-        data: data,
+        data,
         errors,
     });
 };

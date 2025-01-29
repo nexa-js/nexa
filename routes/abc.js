@@ -5,17 +5,19 @@ const PersonDefaultSchema = nexa("PersonDefaultSchema", {
         name: z.string()
     }),
     // Body will be used for POST and PUT
-    body: z.object({
-        name: z.string(),
-        age: z.number(),
-        email: z.string().email(),
-    }),
-    response: z.object({
-        id: z.number(),
-        name: z.string(),
-        age: z.number(),
-        email: z.string().email(),
-    }),
+    // body: z.object({
+    //     name: z.string(),
+    //     age: z.number(),
+    //     email: z.string().email(),
+    // }),
+    response: z.array(
+            z.object({
+            id: z.number(),
+            name: z.string(),
+            age: z.number(),
+            email: z.string().email(),
+        })
+    )
 });
 
 const PersonPatchSchema = nexa("PersonPatchSchema", {
@@ -27,8 +29,8 @@ const PersonPatchSchema = nexa("PersonPatchSchema", {
     response: PersonDefaultSchema.response
 });
 
-route.get([PersonDefaultSchema], (params) => {
-    return 'abc abc'
+route.get(["PersonDefaultSchema"], (params) => {
+    // return 'abc abc'
 }, {
     tests: [{
         query: {
@@ -38,7 +40,7 @@ route.get([PersonDefaultSchema], (params) => {
         }
     }]
 });
-route.patch([PersonPatchSchema, PersonDefaultSchema], (params) => {
+route.patch([PersonPatchSchema, "PersonDefaultSchema"], (params) => {
     return 'abc abc'
 }, {
     tests: [{
