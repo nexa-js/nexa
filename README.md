@@ -4,7 +4,7 @@
 
 📖 **Read the Docs:** [https://nexa-js.github.io/nexa](https://nexa-js.github.io/nexa)  
 
---
+---
 
 ## ✨ Features  
 - **🛠️ Easy Data Mocking** – Quickly create mock APIs with **Faker.js** for seamless frontend testing.  
