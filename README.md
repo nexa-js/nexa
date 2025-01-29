@@ -1,15 +1,46 @@
 # 🚀 Nexa – The Future of API Orchestration for Frontend Development  
 
-**Nexa** is a flexible, high-performance **Backend-for-Frontend (BFF) framework** designed to simplify API integration and accelerate frontend development. With built-in support for **REST, GraphQL, data mocking, aggregation, and custom connectors**, Nexa helps frontend teams focus on UI/UX while keeping backend complexities under control.  
+**Nexa** is the API orchestration layer for frontend development. It helps developers connect to backend services, aggregate data, and deliver optimized APIs for every platform. With built-in mocking, security, and performance optimizations, Nexa makes API integration seamless and efficient.
+
+---
+
+## Documentation
 
 📖 **Read the Docs:** [https://nexa-js.github.io/nexa](https://nexa-js.github.io/nexa)  
 
 ---
 
+## 🔥 Core Concept
+
+### Why Nexa?
+
+Modern web applications require seamless frontend-backend communication, but traditional API development creates bottlenecks:
+- Frontend teams are blocked while waiting for backend endpoints.
+- Backend teams struggle to predict frontend data requirements.
+- Over-fetching and under-fetching make APIs inefficient.
+- Security, caching, and transformations require extra effort.
+
+🚀 Nexa solves this by acting as an intelligent API layer between frontend and backend. It enables parallel development by letting frontend teams define data needs dynamically, while backend teams focus on integrating data sources.
+
+### Patterns Implemented in Nexa
+
+Nexa is built on established architectural patterns to create a flexible, scalable API orchestration layer:
+- **Backend-for-Frontend (BFF)** – Each frontend gets a dedicated API layer, reducing unnecessary data transfer and improving performance.
+- **Schema-First API Design** – Frontend defines expected data, and backend connects the right sources without guessing.
+- **Data Mocking & Virtual Endpoints** – Frontend teams can generate realistic mock APIs instantly, allowing them to develop independently of backend availability.
+
+### How It Works
+
+1. Frontend defines API needs → Requests specific data and format.
+2. Nexa auto-generates API endpoints → Mocks or aggregates real data.
+3. Backend connects data sources → Fulfills structured frontend requests.
+4. API is served efficiently → Optimized, secured, and tailored to frontend needs.
+
+By decoupling frontend and backend, Nexa eliminates blockers, speeds up development, and ensures frontend always gets the data it needs. 🚀
+
 ## ✨ Features  
 - **🛠️ Easy Data Mocking** – Quickly create mock APIs with **Faker.js** for seamless frontend testing.  
-- **📡 Smart API Aggregation** – Fetch data from multiple backend sources and serve it as a single endpoint.  
-- **📱 Customizable APIs** – Deliver tailored responses for web, mobile, and different frontend platforms.  
+- **📡 API Aggregation** – Fetch data from multiple backend sources and serve it as a single endpoint.  
 - **🔐 Built-in Security** – Secure API access with authentication, authorization, and role-based controls.  
 - **⚡ Optimized Performance** – Reduce over-fetching and optimize API responses for faster frontends.  
 - **🚀 Rapid Iteration** – Decouple frontend from backend changes and ship features faster.  
@@ -18,9 +49,7 @@
 
 ## 📌 To-Do  
 ✅ **MVP Implementation** – Core BFF features, Express.js support, and API route handling.  
-🔲 **GraphQL Support** – Add middleware for GraphQL queries and mutations.  
-🔲 **Custom Middleware** – Authentication, RBAC, logging, and request transformations.  
-🔲 **CLI Tooling** – Create a developer-friendly CLI for easy setup and configuration.  
+✅ **Custom Middleware** – Authentication, RBAC, logging, and request transformations.  
 🔲 **API Caching** – Improve performance by introducing request/response caching.  
 🔲 **WebSockets** – Add real-time support for event-driven applications.  
 🔲 **Plugins & Extensibility** – Allow custom connectors and middleware for deeper integrations.  
@@ -42,12 +71,6 @@ To quickly get started with StratosLayer, use **docker-compose** with a volume a
 ```bash
 docker-compose up
 ```
-
----
-
-## Documentation
-
-*Coming soon!*
 
 ---
 
