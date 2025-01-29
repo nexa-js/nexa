@@ -13,9 +13,12 @@
   },
   "scripts": {
     "start": "node .nexa/index.js",
-    "dev": "nodemon -L .nexa/index.js --watch '**/*'"
+    "dev": "nodemon -L .nexa/index.js --watch '**/*'",
+    "docs-init": "docsify init ./docs",
+    "docs-serve": "docsify serve docs"
   },
   "devDependencies": {
+    "docsify-cli": "^4.4.4",
     "nodemon": "^3.1.9"
   }
 }
