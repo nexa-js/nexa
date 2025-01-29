@@ -6,6 +6,10 @@ const UnifiedResponse = async (req, res, schemas, handler, options) => {
 
     let errors = null;
 
+    if (!Array.isArray(schemas)) {
+        schemas = [schemas, null];
+    }
+
     const requestSchema = schemas?.[0];
     const responseSchema = schemas?.[1];
 
@@ -25,22 +29,22 @@ const UnifiedResponse = async (req, res, schemas, handler, options) => {
         }
     }
 
-    const data = await handler(req, res);
+    let data = await handler(req, res)
 
-    const finalResponse = data !== undefined ? data : zodMock(responseSchema);
-
-    if (responseSchema) {
-        const parsedResponse = responseSchema.safeParse(finalResponse);
+    if (responseSchema?.body) {
+        const parsedResponse = responseSchema?.safeParse(data);
         if (!parsedResponse.success) {
             errors = parsedResponse.error.format();
             return res.json({ status: 500, message: "Response validation failed", data: null, errors });
         }
     }
+    const mockSchema = responseSchema?.response ?? requestSchema?.response
+    data = data ?? zodMock(mockSchema);
 
     return res.json({
         status: 200,
         message: '',
-        data: finalResponse,
+        data: data,
         errors,
     });
 };
