@@ -10,7 +10,7 @@ const generateSchemas = (app, directory) => {
     if (!fs.existsSync(directory)) {
         return NexaLogger.error(`Directory "${directory}" does not exist`);
     }
-    
+
     const files = fs.readdirSync(directory);
 
     files.forEach((file) => {
@@ -35,6 +35,8 @@ const makeSchema = (name, options) => {
     NexaLogger.info(`Schema created: ${name}`);
 
     NexaSchemas[name] = options;
+
+    return NexaSchemas[name];
 }
 
 module.exports = {

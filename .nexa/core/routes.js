@@ -41,7 +41,7 @@ const generateRoutes = (app, directory) => {
                 NexaLogger.info(`Route created: [${method}] ${routePath}`);
                 app[method.toLowerCase()](routePath, async (req, res) => {
                     NexaLogger.info(`Request received: [${req.method}] ${req.originalUrl}`);
-                    UnifiedResponse(req, res, schemas, handler, options);
+                    await UnifiedResponse(req, res, schemas, handler, options);
                 });
             }
 
@@ -57,6 +57,9 @@ const generateRoutes = (app, directory) => {
                 },
                 delete: (schemas, handler, options) => {
                     ROUTE_HANDLER('DELETE', schemas, handler, options);
+                },
+                patch: (schemas, handler, options) => {
+                    ROUTE_HANDLER('PATCH', schemas, handler, options);
                 },
             }
 
