@@ -2,6 +2,10 @@
 
 **Nexa** is a flexible, high-performance **Backend-for-Frontend (BFF) framework** designed to simplify API integration and accelerate frontend development. With built-in support for **REST, GraphQL, data mocking, aggregation, and custom connectors**, Nexa helps frontend teams focus on UI/UX while keeping backend complexities under control.  
 
+📖 **Read the Docs:** [https://nexa-js.github.io/nexa](https://nexa-js.github.io/nexa)  
+
+--
+
 ## ✨ Features  
 - **🛠️ Easy Data Mocking** – Quickly create mock APIs with **Faker.js** for seamless frontend testing.  
 - **📡 Smart API Aggregation** – Fetch data from multiple backend sources and serve it as a single endpoint.  
