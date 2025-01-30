@@ -1,6 +1,6 @@
 const { NexaLogger } = require('./logger');
-const { generateMock } = require('@anatine/zod-mock');
 const { findSchema } = require('../utils/schemas');
+const http = require('http');
 
 const UnifiedResponse = async (req, res, schemas, handler, options) => {
     NexaLogger.info(`Route executed: [${req.method}] ${req.originalUrl}`);
@@ -13,36 +13,28 @@ const UnifiedResponse = async (req, res, schemas, handler, options) => {
 
     const requestSchema = findSchema(schemas?.[0]);
     const responseSchema = findSchema(schemas?.[1]) || findSchema(schemas?.[0]);
+    
+    const input = await requestSchema._inputHandler(req, res);
 
-    if (requestSchema?.query) {
-        const parsedQuery = requestSchema.query.safeParse(req.query);
-        if (!parsedQuery.success) {
-            errors = parsedQuery.error.format();
-            return res.json({ status: 400, message: 'Invalid query parameters', errors });
-        }
+    if(input) {
+        return input;
     }
 
-    if (requestSchema?.body) {
-        const parsedBody = requestSchema.body.safeParse(req.body);
-        if (!parsedBody.success) {
-            errors = parsedBody.error.format();
-            return res.json({ status: 400, message: 'Invalid request body', errors });
-        }
+    let data = handler ? await handler(req, res) : undefined;
+
+    const output = await responseSchema._outputHandler(req, res, data);
+
+    if(output) {
+        return output;
+    }  
+
+    const mockOutput = await requestSchema._mockHandler(req, res, data);
+
+    if(mockOutput instanceof http.ServerResponse) {
+        return mockOutput;
+    } else {
+        data = mockOutput;
     }
-
-    let data = await handler(req, res)
-
-    if (responseSchema?.body) {
-        const parsedResponse = responseSchema?.safeParse(data);
-        if (!parsedResponse.success) {
-            errors = parsedResponse.error.format();
-            return res.json({ status: 500, message: "Response validation failed", errors });
-        }
-    }
-
-    data = data ?? generateMock(responseSchema.response, {
-        recordKeysLength: 10
-    });
 
     return res.json({
         status: 200,

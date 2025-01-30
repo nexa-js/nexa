@@ -1,4 +1,4 @@
-route.get(['Schema1', 'Schema2'], (req, res) => {
+nexa.get(['Schema1', 'Schema2'], (req, res) => {
     return req.params
 }, {
     tests: [{

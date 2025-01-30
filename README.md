@@ -1,12 +1,8 @@
-# 🚀 Nexa – The Future of API Orchestration for Frontend Development  
+# 🚀 Nexa
+
+[Docs](https://nexa-js.github.io/nexa) • [Examples](https://github.com/nexa-js/nexa/tree/main/examples)
 
 **Nexa** is the API orchestration layer for frontend development. It helps developers connect to backend services, aggregate data, and deliver optimized APIs for every platform. With built-in mocking, security, and performance optimizations, Nexa makes API integration seamless and efficient.
-
----
-
-## Documentation
-
-📖 **Read the Docs:** [https://nexa-js.github.io/nexa](https://nexa-js.github.io/nexa)  
 
 ---
 
