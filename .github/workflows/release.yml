@@ -22,11 +22,6 @@ jobs:
 
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
-
-      - name: Set up npm authentication
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           
       - name: Set up Git user for CI
         run: |
@@ -36,5 +31,6 @@ jobs:
       - name: Version and Publish Packages
         run: yarn release
         env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}  # Required for publishing to npm
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Required for creating GitHub releases
