@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/nexa-js/nexa/compare/@nexa-js/nexa-starter@1.1.0...@nexa-js/nexa-starter@1.1.1) (2025-01-31)
+
+
+### Bug Fixes
+
+* remove changeset ([8c783cb](https://github.com/nexa-js/nexa/commit/8c783cb232a32fde37d8030d2fa3dda9300f0655))
+
+
+
+
+
 # 1.1.0 (2025-01-31)
 
 
