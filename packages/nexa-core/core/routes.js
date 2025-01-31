@@ -37,7 +37,7 @@ const generateRoutes = async (directory) => {
             await generateRoutes(fullPath);
         } else if (file.endsWith('.js')) {
             const routePath = convertToRoutePath(fullPath);
-
+            
             nexa.makeRoute = (method, schemas, handler, options) => {
                 NexaLogger.info(`Route created: [${method}] ${routePath}`);
                 nexaApp[method.toLowerCase()](routePath, async (req, res) => {

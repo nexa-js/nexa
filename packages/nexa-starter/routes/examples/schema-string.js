@@ -1,0 +1,1 @@
+nexa.get("ExampleSchemaSimple");

@@ -1,6 +1,4 @@
-const schema = nexa.schema("ExampleSchemaInline", {
-    static: false,
-
+const schema = nexa.schema("ExampleSchemaInlineVar", {
     query: z.object({
         test: z.string()
     }),

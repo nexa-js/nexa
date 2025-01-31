@@ -97,7 +97,7 @@ const schemaOutputHandler = async (schema, req, res, data) => {
     if (schema?.response) {
         const parsedResponse = schema.response.safeParse(data);
         if (!parsedResponse.success) {
-            errors = parsedResponse.error;
+            const errors = parsedResponse.error;
             return res.json({ status: 500, message: "Response validation failed", errors });
         }
     }
@@ -108,10 +108,19 @@ const schemaMockHandler = async (schema, req, res, data) => {
     let recordKeysLength = 1;
     let mapArrayItemsLength = 1;
     let page = 1;
+    let perPage = 1;
 
     if (schema.pagination) {
-        perPage = req.query.perPage || 1;
-        page = req.query.page || 1;
+        if(!req.query.perPage) {
+            return res.json({ status: 500, message: `PerPage query param is missing` }); 
+        }
+
+        if(!req.query.page) {
+            return res.json({ status: 500, message: `Page query param is missing` }); 
+        }
+
+        perPage = req.query.perPage;
+        page = req.query.page;
 
         if (schema.pagination.perPageOptions && !schema.pagination.perPageOptions.includes(perPage)) {
             const includesValue = schema.pagination.perPageOptions
@@ -128,7 +137,7 @@ const schemaMockHandler = async (schema, req, res, data) => {
         }
 
         if (page < 1) {
-            throw new Error(`page must be greater than 0`);
+            return res.json({ status: 500, message: `Page query param must be greater than 0` }); 
         }
 
         recordKeysLength = perPage;

@@ -1,6 +1,4 @@
-nexa.schema("ExampleSchema", {
-    static: false,
-
+nexa.schema("ExampleSchemaInlineString", {
     query: z.object({
         test: z.string()
     }),
@@ -12,3 +10,5 @@ nexa.schema("ExampleSchema", {
         email: z.string().email(),
     })
 });
+
+nexa.get("ExampleSchemaInlineString");

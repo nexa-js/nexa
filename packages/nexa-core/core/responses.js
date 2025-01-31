@@ -16,15 +16,15 @@ export const UnifiedResponse = async (req, res, schemas, handler, options) => {
     
     const input = await requestSchema._inputHandler(req, res);
 
-    if(input) {
+    if(input instanceof http.ServerResponse) {
         return input;
     }
 
     let data = handler ? await handler(req, res) : undefined;
 
     const output = await responseSchema._outputHandler(req, res, data);
-
-    if(output) {
+        
+    if(output instanceof http.ServerResponse) {
         return output;
     }  
 

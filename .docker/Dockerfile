@@ -1,24 +1,39 @@
-# Use official Node.js LTS image
-FROM node:18-alpine
+# Use a lightweight Node.js image
+FROM node:18-alpine AS builder
 
 # Set working directory
 WORKDIR /app
 
-# Copy package.json and yarn.lock first for dependency installation
-COPY package.json yarn.lock ./
+# Copy package.json and yarn.lock first to optimize caching
+COPY packages/nexa-starter/package.json ./
 
-# Install dependencies
+# Install all dependencies (including dev dependencies)
 RUN yarn install --frozen-lockfile
 
-# Copy the rest of the app
-COPY . .
+# Copy the entire project
+COPY packages/nexa-starter .
 
-# Set environment variable (default to 3000)
-ARG NEXA_PORT=3000
-ENV NEXA_PORT=${NEXA_PORT}
+# Build the application (if necessary)
+# RUN yarn run build
 
-# Expose the port
-EXPOSE ${NEXA_PORT}
+# --- Final Stage ---
+FROM node:18-alpine AS runtime
 
-# Start the app
-CMD ["sh", ".docker/entrypoint.sh"]
+# Set working directory
+WORKDIR /app
+
+# Copy built files and dependencies from builder stage
+COPY --from=builder /app .
+
+# Install only production dependencies
+RUN yarn install --production=false --frozen-lockfile
+
+# Install nodemon globally for development mode
+RUN if [ "$NEXA_DEV_MODE" = "true" ]; then yarn global add nodemon; fi
+
+# Ensure entrypoint script is executable
+COPY .docker/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# Use OS environment variables and run the app
+CMD ["/entrypoint.sh"]

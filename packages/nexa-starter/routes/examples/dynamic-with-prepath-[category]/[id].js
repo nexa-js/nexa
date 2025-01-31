@@ -1,16 +1,10 @@
-
 nexa.get(
-    nexa.schema("ExampleSchemaInlineT", {
+    nexa.schema("ExampleSchemaDynamicWithParams", {
         static: false,
 
         params: z.object({
             category: z.string(),
             id: z.string(),
-        }),
-
-        query: z.object({
-            test: z.string(),
-            
         }),
 
         response: z.object({
