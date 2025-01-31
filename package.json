@@ -15,7 +15,7 @@
   "scripts": {
     "docs-init": "docsify init ./docs",
     "docs-serve": "docsify serve docs",
-    "release": "lerna publish from-package --yes"
+    "release": "lerna publish from-package --yes --conventional-commits --conventional-prerelease"
   },
   "dependencies": {
     "changeset": "^0.2.6",
