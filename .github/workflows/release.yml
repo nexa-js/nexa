@@ -5,6 +5,12 @@ on:
     branches:
       - main
 
+# Set permissions for the GITHUB_TOKEN
+permissions:
+  contents: write  # Allows pushing changes (e.g., version bumps, tags)
+  pull-requests: write  # Allows creating pull requests (if needed)
+  issues: write  # Allows creating issues (if needed)
+
 jobs:
   release:
     runs-on: ubuntu-latest
