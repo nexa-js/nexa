@@ -13,7 +13,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-
 ## [1.0.2](https://github.com/nexa-js/nexa/compare/@nexa-js/nexa-core@1.0.1...@nexa-js/nexa-core@1.0.2) (2025-01-31)
 
 
