@@ -2,27 +2,31 @@
   "name": "nexa",
   "version": "1.0.0",
   "description": "A flexible Backend-for-Frontend framework for seamless API integration and rapid frontend development. Easily mock, aggregate, and connect your backend services with built-in support for REST, GraphQL, custom connectors, and more.",
-  "main": ".nexa/index.js",
-  "repository": "git@github.com:nexa-js/nexa.git",
-  "author": "Kir <5420754+lastonoga@users.noreply.github.com>>",
-  "license": "Apache-2.0",
-  "private": false,
-  "dependencies": {
-    "@anatine/zod-mock": "^3.13.5",
-    "@faker-js/faker": "^9.4.0",
-    "crypto": "^1.0.1",
-    "express": "^4.21.2",
-    "winston": "^3.17.0",
-    "zod": "^3.24.1"
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/nexa-js/nexa.git"
   },
+  "author": "Kir <5420754+lastonoga@users.noreply.github.com>",
+  "license": "Apache-2.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "start": "node .nexa/index.js",
-    "dev": "nodemon -L .nexa/index.js --watch '**/*'",
     "docs-init": "docsify init ./docs",
     "docs-serve": "docsify serve docs"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.12",
     "docsify-cli": "^4.4.4",
     "nodemon": "^3.1.9"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/nexa-js/nexa/issues"
+  },
+  "homepage": "https://github.com/nexa-js/nexa#readme",
+  "directories": {
+    "doc": "docs"
+  },
+  "keywords": []
 }

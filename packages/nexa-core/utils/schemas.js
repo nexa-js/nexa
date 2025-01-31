@@ -1,7 +1,7 @@
-const { NexaSchemas } = require('../core/schemas');
-const { NexaLogger } = require('../core/logger');
+import { NexaSchemas } from '../core/schemas.js';
+import { NexaLogger } from '../core/logger.js';
 
-const findSchema = (schema) => {
+export const findSchema = (schema) => {
     if(typeof schema != 'string') {
         return schema
     }
@@ -11,8 +11,4 @@ const findSchema = (schema) => {
     }
 
     return NexaLogger.error(`Schema with name "${schema}" doesn't exists`);
-}
-
-module.exports = {
-    findSchema,
 }

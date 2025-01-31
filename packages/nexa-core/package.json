@@ -1,0 +1,15 @@
+{
+  "name": "nexa-core",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@anatine/zod-mock": "^3.13.5",
+    "@faker-js/faker": "^9.4.0",
+    "crypto": "^1.0.1",
+    "express": "^4.21.2",
+    "winston": "^3.17.0",
+    "zod": "^3.24.1"
+  }
+}

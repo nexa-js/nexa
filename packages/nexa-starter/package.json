@@ -1,0 +1,17 @@
+{
+  "name": "nexa-starter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "nexa-core": "*"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon -L index.js --watch '**/*'"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}

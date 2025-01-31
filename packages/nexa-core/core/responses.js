@@ -1,9 +1,9 @@
-const { NexaLogger } = require('./logger');
-const { findSchema } = require('../utils/schemas');
-const http = require('http');
+import { NexaLogger } from './logger.js';
+import { findSchema } from '../utils/schemas.js';
+import http from 'http';
 
-const UnifiedResponse = async (req, res, schemas, handler, options) => {
-    NexaLogger.info(`Route executed: [${req.method}] ${req.originalUrl}`);
+export const UnifiedResponse = async (req, res, schemas, handler, options) => {
+    NexaLogger.debug(`Route executed: [${req.method}] ${req.originalUrl}`);
 
     let errors = undefined;
 
@@ -41,8 +41,4 @@ const UnifiedResponse = async (req, res, schemas, handler, options) => {
         data,
         errors,
     });
-};
-
-module.exports = {
-    UnifiedResponse,
 };

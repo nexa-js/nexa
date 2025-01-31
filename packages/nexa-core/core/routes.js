@@ -1,9 +1,10 @@
-const fs = require('fs');
-const path = require('path');
-const { UnifiedResponse } = require('./responses');
-const { NexaLogger } = require('./logger');
+import fs from 'fs';
+import path from 'path';
+import { UnifiedResponse } from './responses.js';
+import { NexaLogger } from './logger.js';
+import { NEXA_MAIN_LOCATION } from '../utils/env.js';
 
-const routesFolder = path.join(__dirname, '../../conf/routes');
+const routesFolder = path.join(NEXA_MAIN_LOCATION, '../routes');
 
 // Function to convert the file path to a route path
 const convertToRoutePath = (filePath) => {
@@ -25,7 +26,7 @@ const generateRoutes = (directory) => {
     if (!fs.existsSync(directory)) {
         return NexaLogger.error(`Directory "${directory}" does not exist`);
     }
-    
+
     const files = fs.readdirSync(directory);
 
     files.forEach((file) => {
@@ -36,22 +37,20 @@ const generateRoutes = (directory) => {
             generateRoutes(fullPath);
         } else if (file.endsWith('.js')) {
             const routePath = convertToRoutePath(fullPath);
-            
+
             nexa.makeRoute = (method, schemas, handler, options) => {
                 NexaLogger.info(`Route created: [${method}] ${routePath}`);
                 nexaApp[method.toLowerCase()](routePath, async (req, res) => {
-                    NexaLogger.info(`Request received: [${req.method}] ${req.originalUrl}`);
+                    NexaLogger.debug(`Request received: [${req.method}] ${req.originalUrl}`);
                     await UnifiedResponse(req, res, schemas, handler, options);
                 });
             }
 
-            require(fullPath);
+            import(fullPath);
         }
     });
 };
 
-module.exports = {
-    makeNexaRoutes: () => {
-        return generateRoutes(routesFolder);
-    },
+export const makeNexaRoutes = () => {
+    return generateRoutes(routesFolder);
 }

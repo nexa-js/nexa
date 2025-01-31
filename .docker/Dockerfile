@@ -13,8 +13,12 @@ RUN yarn install --frozen-lockfile
 # Copy the rest of the app
 COPY . .
 
-# Expose the port your app runs on
-EXPOSE 3000
+# Set environment variable (default to 3000)
+ARG NEXA_PORT=3000
+ENV NEXA_PORT=${NEXA_PORT}
+
+# Expose the port
+EXPOSE ${NEXA_PORT}
 
 # Start the app
-CMD ["yarn", "run", "start"]
+CMD ["sh", ".docker/entrypoint.sh"]

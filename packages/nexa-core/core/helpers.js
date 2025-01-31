@@ -1,8 +1,8 @@
-const { makeSchema } = require('./schemas');
-const { NexaLogger } = require('./logger');
-const { z } = require('zod');
+import { makeSchema } from './schemas.js';
+import { NexaLogger } from './logger.js';
+import { z } from 'zod';
 
-const registerNexaHelpers = (app) => {
+export const registerNexaHelpers = (app) => {
     global.z = z;
     global.nexaApp = app;
     global.nexa = {
@@ -27,8 +27,4 @@ const registerNexaHelpers = (app) => {
             nexa.makeRoute('PATCH', schemas, handler, options);
         },
     }
-}
-
-module.exports = {
-    registerNexaHelpers,
 }

@@ -1,13 +1,13 @@
-const fs = require('fs');
-const path = require('path');
-const { NexaLogger } = require('./logger');
-const { query } = require('express');
-const { generateMock } = require('@anatine/zod-mock');
-const { z } = require('zod');
-const crypto = require('crypto');
+import fs from 'fs';
+import path from 'path';
+import crypto from 'crypto';
+import { generateMock } from '@anatine/zod-mock';
+import { z } from 'zod';
 
-const routesFolder = path.join(__dirname, '../../conf/schemas');
+import { NexaLogger } from './logger.js';
+import { NEXA_MAIN_LOCATION } from '../utils/env.js';
 
+const routesFolder = path.join(NEXA_MAIN_LOCATION, '../schemas');
 
 // Function to read the routes and generate Express routes
 const generateSchemas = (app, directory) => {
@@ -24,12 +24,12 @@ const generateSchemas = (app, directory) => {
         if (stat.isDirectory()) {
             generateSchemas(app, fullPath);
         } else if (file.endsWith('.js')) {
-            require(fullPath);
+            import(fullPath);
         }
     });
 };
 
-let NexaSchemas = {};
+export let NexaSchemas = {};
 
 /**
  * Generates a deterministic seed from request query and body.
@@ -142,7 +142,7 @@ const schemaMockHandler = async (schema, req, res, data) => {
     return data ?? generateMock(mockingSchema, options);
 }
 
-const makeSchema = (name, options) => {
+export const makeSchema = (name, options) => {
     if (NexaSchemas[name]) {
         return NexaLogger.error(`Schema with name "${name}" already exists`);
     }
@@ -166,10 +166,6 @@ const makeSchema = (name, options) => {
     return NexaSchemas[name];
 }
 
-module.exports = {
-    makeSchema,
-    makeNexaSchemas: (app) => {
-        return generateSchemas(app, routesFolder);
-    },
-    NexaSchemas,
+export const makeNexaSchemas = (app) => {
+    return generateSchemas(app, routesFolder);
 }
