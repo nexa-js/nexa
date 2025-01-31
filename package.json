@@ -28,5 +28,8 @@
   "directories": {
     "doc": "docs"
   },
-  "keywords": []
+  "keywords": [],
+  "publishConfig": {
+    "access": "public"
+  }
 }
