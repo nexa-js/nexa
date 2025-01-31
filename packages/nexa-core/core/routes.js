@@ -22,19 +22,19 @@ const convertToRoutePath = (filePath) => {
 };
 
 // Function to read the routes and generate Express routes
-const generateRoutes = (directory) => {
+const generateRoutes = async (directory) => {
     if (!fs.existsSync(directory)) {
         return NexaLogger.error(`Directory "${directory}" does not exist`);
     }
 
     const files = fs.readdirSync(directory);
 
-    files.forEach((file) => {
+    for (const file of files) {
         const fullPath = path.join(directory, file);
         const stat = fs.statSync(fullPath);
         // If it's a directory, recursively generate routes for files in it
         if (stat.isDirectory()) {
-            generateRoutes(fullPath);
+            await generateRoutes(fullPath);
         } else if (file.endsWith('.js')) {
             const routePath = convertToRoutePath(fullPath);
 
@@ -46,11 +46,11 @@ const generateRoutes = (directory) => {
                 });
             }
 
-            import(fullPath);
+            await import(fullPath);
         }
-    });
+    };
 };
 
-export const makeNexaRoutes = () => {
-    return generateRoutes(routesFolder);
+export const makeNexaRoutes = async () => {
+    return await generateRoutes(routesFolder);
 }

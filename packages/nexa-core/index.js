@@ -8,15 +8,15 @@ import { makeNexaRoutes } from './core/routes.js';
 import { makeNexaSchemas } from './core/schemas.js';
 import { registerNexaHelpers } from './core/helpers.js';
 
-const start = () => {
+const start = async () => {
   registerNexaHelpers(app);
 
   app.listen(port, () => {
     nexa.logger.info(`Nexa listening on port ${port}`)
   })
 
-  makeNexaSchemas(app);
-  makeNexaRoutes(app);
+  await makeNexaSchemas(app);
+  await makeNexaRoutes(app);
 }
 
 // const { middlewares } = require('../src/nexa');
@@ -26,7 +26,7 @@ const start = () => {
 // }
 
 export const launchNexa = async (callback) => {
-  start();
+  await start();
 
   if (callback) {
     callback(app);

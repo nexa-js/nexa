@@ -10,23 +10,23 @@ import { NEXA_MAIN_LOCATION } from '../utils/env.js';
 const routesFolder = path.join(NEXA_MAIN_LOCATION, '../schemas');
 
 // Function to read the routes and generate Express routes
-const generateSchemas = (app, directory) => {
+const generateSchemas = async (app, directory) => {
     if (!fs.existsSync(directory)) {
         return NexaLogger.error(`Directory "${directory}" does not exist`);
     }
 
     const files = fs.readdirSync(directory);
 
-    files.forEach((file) => {
+    for (const file of files) {
         const fullPath = path.join(directory, file);
         const stat = fs.statSync(fullPath);
         // If it's a directory, recursively generate routes for files in it
         if (stat.isDirectory()) {
-            generateSchemas(app, fullPath);
+            await generateSchemas(app, fullPath);
         } else if (file.endsWith('.js')) {
-            import(fullPath);
+            await import(fullPath);
         }
-    });
+    };
 };
 
 export let NexaSchemas = {};
@@ -64,10 +64,18 @@ const generateFakerSeed = (query = {}, body = {}) => {
 
 
 const schemaInputHandler = async (schema, req, res) => {
+    if (schema?.params) {
+        const parsedQuery = schema.params.safeParse(req.params);
+        if (!parsedQuery.success) {
+            const errors = parsedQuery.error;
+            return res.json({ status: 400, message: 'Invalid query parameters', errors });
+        }
+    }
+    
     if (schema?.query) {
         const parsedQuery = schema.query.safeParse(req.query);
         if (!parsedQuery.success) {
-            errors = parsedQuery.error;
+            const errors = parsedQuery.error;
             return res.json({ status: 400, message: 'Invalid query parameters', errors });
         }
     }
@@ -75,7 +83,7 @@ const schemaInputHandler = async (schema, req, res) => {
     if (schema?.body) {
         const parsedBody = schema.body.safeParse(req.body);
         if (!parsedBody.success) {
-            errors = parsedBody.error;
+            const errors = parsedBody.error;
             return res.json({ status: 400, message: 'Invalid request body', errors });
         }
     }
@@ -151,8 +159,9 @@ export const makeSchema = (name, options) => {
 
     // Default schema options
     NexaSchemas[name] = {
-        static: true,
+        static: true, // Bind mocks to input query set
         pagination: false,
+        params: null,
         query: null,
         body: null,
         response: null,
@@ -166,6 +175,6 @@ export const makeSchema = (name, options) => {
     return NexaSchemas[name];
 }
 
-export const makeNexaSchemas = (app) => {
-    return generateSchemas(app, routesFolder);
+export const makeNexaSchemas = async (app) => {
+    return await generateSchemas(app, routesFolder);
 }
