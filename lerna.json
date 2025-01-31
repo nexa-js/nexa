@@ -1,0 +1,17 @@
+{
+  "version": "independent",
+  "npmClient": "yarn",
+  "command": {
+    "publish": {
+      "registry": "https://registry.npmjs.org",
+      "access": "public",
+      "message": "chore(release): publish",
+      "conventionalCommits": true,
+      "yes": true
+    },
+    "version": {
+      "conventionalCommits": true,
+      "message": "chore(release): version bump"
+    }
+  }
+}

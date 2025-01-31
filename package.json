@@ -14,12 +14,13 @@
   ],
   "scripts": {
     "docs-init": "docsify init ./docs",
-    "docs-serve": "docsify serve docs"
+    "docs-serve": "docsify serve docs",
+    "release": "lerna publish from-package --yes"
   },
-  "devDependencies": {
-    "@changesets/cli": "^2.27.12",
+  "dependencies": {
+    "changeset": "^0.2.6",
     "docsify-cli": "^4.4.4",
-    "nodemon": "^3.1.9"
+    "lerna": "^8.1.9"
   },
   "bugs": {
     "url": "https://github.com/nexa-js/nexa/issues"

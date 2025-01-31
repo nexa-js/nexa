@@ -23,12 +23,8 @@ jobs:
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Create Release Pull Request or Publish to npm
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          publish: yarn changeset publish
-          version: yarn changeset version
+      - name: Version and Publish Packages
+        run: yarn release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}  # Required for publishing to npm
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Required for creating GitHub releases
