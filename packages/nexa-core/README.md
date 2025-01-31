@@ -14,6 +14,14 @@ Nexa Core is the foundational package of the Nexa project. It provides essential
 
 To install Nexa Core, you can use `npm` or `yarn`:
 
+### With npx (Recommended)
+
+The easiest way to get started with Nexa Starter is by using `npx`. Run the following command to automatically install and set up the project:
+
+```bash
+npx @nexa-js/nexa-create nexa-js
+```
+
 ### With npm:
 
 ```bash

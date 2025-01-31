@@ -1,0 +1,17 @@
+{
+  "name": "@nexa-js/nexa-create",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "commander": "^13.1.0",
+    "degit": "^2.8.4",
+    "inquirer": "^12.3.3",
+    "shelljs": "^0.8.5"
+  },
+  "bin": {
+    "create-your-project": "./index.js"
+  }
+}

@@ -17,7 +17,7 @@ Nexa Starter is a basic example project to get you up and running with the Nexa 
 The easiest way to get started with Nexa Starter is by using `npx`. Run the following command to automatically install and set up the project:
 
 ```bash
-npx create-nexa-starter
+npx @nexa-js/nexa-create test
 ```
 
 This command will:
