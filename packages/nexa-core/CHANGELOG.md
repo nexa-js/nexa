@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.6](https://github.com/nexa-js/nexa/compare/@nexa-js/nexa-core@1.0.5...@nexa-js/nexa-core@1.0.6) (2025-01-31)
+
+
+### Bug Fixes
+
+* add readme ([c79e7a4](https://github.com/nexa-js/nexa/commit/c79e7a481c8f96baa41dcf451a67eeecc9ca9018))
+
+
+
+
+
 ## [1.0.5](https://github.com/nexa-js/nexa/compare/@nexa-js/nexa-core@1.0.4...@nexa-js/nexa-core@1.0.5) (2025-01-31)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.5](https://github.com/nexa-js/nexa/compare/@nexa-js/nexa-starter@1.1.4...@nexa-js/nexa-starter@1.1.5) (2025-01-31)
+
+
+### Bug Fixes
+
+* add readme ([c79e7a4](https://github.com/nexa-js/nexa/commit/c79e7a481c8f96baa41dcf451a67eeecc9ca9018))
+
+
+
+
+
 ## [1.1.4](https://github.com/nexa-js/nexa/compare/@nexa-js/nexa-starter@1.1.3...@nexa-js/nexa-starter@1.1.4) (2025-01-31)
 
 **Note:** Version bump only for package @nexa-js/nexa-starter
