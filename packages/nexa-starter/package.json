@@ -1,11 +1,11 @@
 {
   "name": "@nexa-js/nexa-starter",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "main": "index.js",
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "@nexa-js/nexa-core": "^1.1.1"
+    "@nexa-js/nexa-core": "^1.1.2"
   },
   "scripts": {
     "start": "node index.js",
