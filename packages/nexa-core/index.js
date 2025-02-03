@@ -7,26 +7,27 @@ const port = env.NEXA_PORT;
 import { makeNexaRoutes } from './core/routes.js';
 import { makeNexaSchemas } from './core/schemas.js';
 import { registerNexaHelpers } from './core/helpers.js';
+import { runTests } from './core/tests.js';
 
-const start = async () => {
+const runApplication = async () => {
   registerNexaHelpers(app);
-
-  app.listen(port, () => {
-    nexa.logger.info(`Nexa listening on port ${port}`)
-  })
 
   await makeNexaSchemas(app);
   await makeNexaRoutes(app);
 }
 
-// const { middlewares } = require('../src/nexa');
-
-// if (middlewares) {
-//   middlewares(app);
-// }
-
 export const launchNexa = async (callback) => {
-  await start();
+  const isTesting = process.argv.includes('--test');
+
+  await runApplication();
+
+  if (isTesting) {
+    await runTests();
+  } else {
+    app.listen(port, () => {
+      nexa.logger.info(`Nexa listening on port ${port}`)
+    })
+  }
 
   if (callback) {
     callback(app);

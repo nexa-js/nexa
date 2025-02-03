@@ -6,6 +6,7 @@ export const registerNexaHelpers = (app) => {
     global.z = z;
     global.nexaApp = app;
     global.nexa = {
+        app: app,
         logger: NexaLogger,
         schema: makeSchema,
         makeRoute: (method, routePath, schemas, handler, options) => {

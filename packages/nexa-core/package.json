@@ -7,10 +7,19 @@
   "dependencies": {
     "@anatine/zod-mock": "^3.13.5",
     "@faker-js/faker": "^9.4.0",
+    "chalk": "^5.4.1",
+    "commander": "^13.1.0",
     "crypto": "^1.0.1",
     "express": "^4.21.2",
+    "mocha": "^11.1.0",
+    "shelljs": "^0.8.5",
+    "supertest": "^7.0.0",
     "winston": "^3.17.0",
     "zod": "^3.24.1"
   },
-  "gitHead": "fbb50534c5f9bf4668c0ffa6c5e47d134f84e2b1"
+  "gitHead": "fbb50534c5f9bf4668c0ffa6c5e47d134f84e2b1",
+  "devDependencies": {},
+  "bin": {
+    "nexa": "./bin/index.js"
+  }
 }

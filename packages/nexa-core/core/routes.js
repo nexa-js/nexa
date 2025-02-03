@@ -21,6 +21,8 @@ const convertToRoutePath = (filePath) => {
     return routePath;
 };
 
+export let NexaRoutes = [];
+
 // Function to read the routes and generate Express routes
 const generateRoutes = async (directory) => {
     if (!fs.existsSync(directory)) {
@@ -40,6 +42,15 @@ const generateRoutes = async (directory) => {
             
             nexa.makeRoute = (method, schemas, handler, options) => {
                 NexaLogger.info(`Route created: [${method}] ${routePath}`);
+
+                NexaRoutes.push({
+                    method: method.toLowerCase(),
+                    path: routePath,
+                    schemas,
+                    handler,
+                    options,
+                });
+
                 nexaApp[method.toLowerCase()](routePath, async (req, res) => {
                     NexaLogger.debug(`Request received: [${req.method}] ${req.originalUrl}`);
                     await UnifiedResponse(req, res, schemas, handler, options);
