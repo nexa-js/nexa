@@ -1,6 +1,6 @@
 {
   "name": "@nexa-js/nexa-core",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "main": "index.js",
   "license": "MIT",
   "type": "module",
@@ -18,7 +18,6 @@
     "zod": "^3.24.1"
   },
   "gitHead": "fbb50534c5f9bf4668c0ffa6c5e47d134f84e2b1",
-  "devDependencies": {},
   "bin": {
     "nexa": "./bin/index.js"
   }

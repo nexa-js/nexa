@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/nexa-js/nexa/compare/@nexa-js/nexa-starter@1.2.2...@nexa-js/nexa-starter@1.3.0) (2025-02-03)
+
+
+### Features
+
+* add auto-tests & nexa cli bin ([64ca4f4](https://github.com/nexa-js/nexa/commit/64ca4f44873bdb0465b5546c6c46fc24284be475))
+
+
+
+
+
 ## [1.2.2](https://github.com/nexa-js/nexa/compare/@nexa-js/nexa-starter@1.2.1...@nexa-js/nexa-starter@1.2.2) (2025-01-31)
 
 
