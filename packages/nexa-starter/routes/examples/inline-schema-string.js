@@ -12,3 +12,7 @@ nexa.schema("ExampleSchemaInlineString", {
 });
 
 nexa.get("ExampleSchemaInlineString");
+nexa.post("ExampleSchemaInlineString");
+nexa.put("ExampleSchemaInlineString");
+nexa.patch("ExampleSchemaInlineString");
+nexa.delete("ExampleSchemaInlineString");

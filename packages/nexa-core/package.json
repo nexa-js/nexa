@@ -14,8 +14,10 @@
     "mocha": "^11.1.0",
     "shelljs": "^0.8.5",
     "supertest": "^7.0.0",
+    "swagger-ui-express": "^5.0.1",
     "winston": "^3.17.0",
-    "zod": "^3.24.1"
+    "zod": "^3.24.1",
+    "zod-openapi": "^4.2.3"
   },
   "gitHead": "fbb50534c5f9bf4668c0ffa6c5e47d134f84e2b1",
   "bin": {

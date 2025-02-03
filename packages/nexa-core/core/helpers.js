@@ -1,6 +1,9 @@
 import { makeSchema } from './schemas.js';
 import { NexaLogger } from './logger.js';
 import { z } from 'zod';
+import { extendZodWithOpenApi } from 'zod-openapi';
+
+extendZodWithOpenApi(z);
 
 export const registerNexaHelpers = (app) => {
     global.z = z;
