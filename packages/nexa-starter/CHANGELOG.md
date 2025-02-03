@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/nexa-js/nexa/compare/@nexa-js/nexa-starter@1.3.1...@nexa-js/nexa-starter@1.4.0) (2025-02-03)
+
+
+### Features
+
+* add auto swagger generation ([e7f5f92](https://github.com/nexa-js/nexa/commit/e7f5f9280dc326e75b0599d937a4e2e3f2362e9a))
+
+
+
+
+
 ## [1.3.1](https://github.com/nexa-js/nexa/compare/@nexa-js/nexa-starter@1.3.0...@nexa-js/nexa-starter@1.3.1) (2025-02-03)
 
 
