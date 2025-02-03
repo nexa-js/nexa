@@ -4,7 +4,7 @@ const schema = nexa.schema("ExampleSchemaInlinePagination", {
 
     // Define pagination for schema and possible options
     pagination: {
-        perPageOptions: [10, 50, 100],
+        limits: [10, 50, 100],
     },
     
     response: z.array(

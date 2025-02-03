@@ -32,13 +32,14 @@ export const UnifiedResponse = async (req, res, schemas, handler, options) => {
 
     if(mockOutput instanceof http.ServerResponse) {
         return mockOutput;
-    } else {
-        data = mockOutput;
-    }
+    } 
+
+    const { pagination, data: responseData } = mockOutput;
 
     return res.json({
         status: 200,
-        data,
+        pagination,
+        data: responseData,
         errors,
     });
 };

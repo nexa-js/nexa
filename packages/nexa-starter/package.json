@@ -5,15 +5,13 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "@nexa-js/nexa-core": "^1.2.0"
+    "@nexa-js/nexa-core": "^1.1.2"
   },
   "scripts": {
     "start": "nexa start",
     "dev": "nexa dev",
     "test": "nexa test"
   },
-  "devDependencies": {
-    "nodeman": "^1.1.2"
-  },
+  "devDependencies": {},
   "gitHead": "fbb50534c5f9bf4668c0ffa6c5e47d134f84e2b1"
 }

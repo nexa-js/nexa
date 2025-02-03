@@ -111,26 +111,26 @@ const schemaMockHandler = async (schema, req, res, data) => {
     let perPage = 1;
 
     if (schema.pagination) {
-        if(!req.query.perPage) {
-            return res.json({ status: 500, message: `PerPage query param is missing` }); 
+        if(!req.query.limit) {
+            return res.json({ status: 500, message: `Limit query param is missing` }); 
         }
 
         if(!req.query.page) {
             return res.json({ status: 500, message: `Page query param is missing` }); 
         }
 
-        perPage = req.query.perPage;
+        perPage = req.query.limit;
         page = req.query.page;
 
-        if (schema.pagination.perPageOptions && !schema.pagination.perPageOptions.includes(perPage)) {
-            const includesValue = schema.pagination.perPageOptions
+        if (schema.pagination.limits && !schema.pagination.limits.includes(perPage)) {
+            const includesValue = schema.pagination.limits
                 .map(item => String(item).toLowerCase())
                 .includes(String(perPage).toLowerCase());
 
             if (!includesValue) {
                 return res.json({
                     status: 400, message: 'Invalid query parameters', errors: [{
-                        message: `perPage must be one of ${schema.pagination.perPageOptions.join(', ')}`,
+                        message: `Limit must be one of ${schema.pagination.limits.join(', ')}`,
                     }]
                 });
             }
@@ -156,7 +156,32 @@ const schemaMockHandler = async (schema, req, res, data) => {
         }
     }
 
-    return data ?? generateMock(mockingSchema, options);
+    let responseData = null;
+    let responsePatination = null;
+
+    if(data) {
+        responseData = data;
+        if(schema.pagination) {
+            responseData = data.data;
+            responsePatination = data.pagination;
+        }
+    } else {
+        responseData = generateMock(mockingSchema, options);
+        if(schema.pagination) {
+            const totalPages = 10;
+            responsePatination = {
+                page,
+                perPage,
+                totalPages,
+                totalRecords: totalPages * perPage,
+            }
+        }
+    }
+
+    return {
+        data: responseData,
+        pagination: responsePatination,
+    }
 }
 
 export const makeSchema = (name, options) => {
