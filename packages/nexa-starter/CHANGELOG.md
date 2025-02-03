@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/nexa-js/nexa/compare/@nexa-js/nexa-starter@1.3.0...@nexa-js/nexa-starter@1.3.1) (2025-02-03)
+
+
+### Bug Fixes
+
+* pagination response, config & cli ([fdb5fa9](https://github.com/nexa-js/nexa/commit/fdb5fa977c90f8b1f8f72d5b5f0c7a17f7661cbb))
+
+
+
+
+
 # [1.3.0](https://github.com/nexa-js/nexa/compare/@nexa-js/nexa-starter@1.2.2...@nexa-js/nexa-starter@1.3.0) (2025-02-03)
 
 
