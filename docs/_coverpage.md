@@ -14,4 +14,4 @@ Modern web applications require seamless frontend-backend communication, but tra
 - Security, caching, and transformations require extra effort.
 
 [GitHub](https://github.com/nexa-js/nexa/)
-[Get Started](#docsify)
+[Get Started](/intro)

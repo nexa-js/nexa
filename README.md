@@ -1,81 +1,97 @@
-# 🚀 Nexa
+# Nexa - The Future of API Orchestration for Frontend Development
 
-[Docs](https://nexa-js.github.io/nexa) • [Examples](https://github.com/nexa-js/nexa/tree/main/examples)
+Nexa is a cloud-native **Backend-for-Frontend (BFF)** framework designed to streamline frontend-backend communication. It enables rapid API development with built-in mocking, validation, testing, documentation, and data aggregation.
 
-**Nexa** is the API orchestration layer for frontend development. It helps developers connect to backend services, aggregate data, and deliver optimized APIs for every platform. With built-in mocking, security, and performance optimizations, Nexa makes API integration seamless and efficient.
-
----
-
-## 🔥 Core Concept
-
-### Why Nexa?
+## Why Nexa?
 
 Modern web applications require seamless frontend-backend communication, but traditional API development creates bottlenecks:
+
 - Frontend teams are blocked while waiting for backend endpoints.
 - Backend teams struggle to predict frontend data requirements.
 - Over-fetching and under-fetching make APIs inefficient.
 - Security, caching, and transformations require extra effort.
 
-🚀 Nexa solves this by acting as an intelligent API layer between frontend and backend. It enables parallel development by letting frontend teams define data needs dynamically, while backend teams focus on integrating data sources.
+**Nexa** solves this by acting as an intelligent API layer between frontend and backend. It enables parallel development by letting frontend teams define data needs dynamically, while backend teams focus on integrating data sources.
 
-### Patterns Implemented in Nexa
+## Key Features
 
-Nexa is built on established architectural patterns to create a flexible, scalable API orchestration layer:
-- **Backend-for-Frontend (BFF)** – Each frontend gets a dedicated API layer, reducing unnecessary data transfer and improving performance.
-- **Schema-First API Design** – Frontend defines expected data, and backend connects the right sources without guessing.
-- **Data Mocking & Virtual Endpoints** – Frontend teams can generate realistic mock APIs instantly, allowing them to develop independently of backend availability.
+- **Schema-based**: Uses Zod for validation and auto-mocking.
+- **Automatic mocking**: If a backend isn't implemented, Nexa will mock responses automatically.
+- **File-based routing**: Uses Next.js-style routes.
+- **Built-in pagination**.
+- **Express.js** and full Express support (e.g., middlewares, CORS, etc.).
+- **Static mocks generation** based on input params, query, and body to prevent frontend from acting randomly.
+- **Auto Swagger docs generation**.
+- **Integration tests** to help backend teams validate it follows frontend schema and requirements.
 
-### How It Works
+## Documentation
 
-1. Frontend defines API needs → Requests specific data and format.
-2. Nexa auto-generates API endpoints → Mocks or aggregates real data.
-3. Backend connects data sources → Fulfills structured frontend requests.
-4. API is served efficiently → Optimized, secured, and tailored to frontend needs.
+For detailed documentation, please visit the official docs:
 
-By decoupling frontend and backend, Nexa eliminates blockers, speeds up development, and ensures frontend always gets the data it needs. 🚀
-
-## ✨ Features  
-- **🛠️ Easy Data Mocking** – Quickly create mock APIs with **Faker.js** for seamless frontend testing.  
-- **📡 API Aggregation** – Fetch data from multiple backend sources and serve it as a single endpoint.  
-- **🔐 Built-in Security** – Secure API access with authentication, authorization, and role-based controls.  
-- **⚡ Optimized Performance** – Reduce over-fetching and optimize API responses for faster frontends.  
-- **🚀 Rapid Iteration** – Decouple frontend from backend changes and ship features faster.  
-
----
-
-## 📌 To-Do  
-✅ **MVP Implementation** – Core BFF features, Express.js support, and API route handling.  
-✅ **Custom Middleware** – Authentication, RBAC, logging, and request transformations.  
-🔲 **API Caching** – Improve performance by introducing request/response caching.  
-🔲 **WebSockets** – Add real-time support for event-driven applications.  
-🔲 **Plugins & Extensibility** – Allow custom connectors and middleware for deeper integrations.  
-
----
-
-## 🔮 Future Plans  
-📅 **Phase 1** – Open-source the framework and build a developer community.  
-📅 **Phase 2** – Introduce a low-code UI for managing API orchestration visually.  
-📅 **Phase 3** – SaaS offering with cloud-hosted BFF instances and analytics.  
-📅 **Phase 4** – AI-powered API optimization and auto-generated API contracts.  
-
----
+[Read the Documentation](https://nexa-js.github.io/nexa/#/)
 
 ## Installation
 
-To quickly get started with StratosLayer, use **docker-compose** with a volume attached.
+### With npx (Recommended)
+
+The easiest way to get started with Nexa is by using `npx`. Run the following command to automatically install and set up the project:
 
 ```bash
-docker-compose up
+npx @nexa-js/nexa-create my-nexa-project
 ```
+
+This will:
+- Install project dependencies.
+- Set up the project structure.
+- Initialize everything needed to get the starter running.
+
+## Getting Started
+
+### Basic Setup
+
+To get started, import launchNexa into your project:
+
+```javascript
+import { launchNexa } from '@nexa-js/nexa-core';
+
+launchNexa()
+```
+
+This will launch the Express web server with schemas and routes configured in the `routes/*` and `schemas/*` folders.
+
+### Project Structure
+
+There are two main entities: `schemas` and `routes`. The entry point is `index.js`, which contains `launchNexa` and allows you to modify the Express server (e.g., add middlewares, configure auth, CORS, etc.).
+
+## Examples
+
+Check out the examples for different route setups and configurations in the Nexa Starter project:
+
+[Examples in Nexa Starter](https://nexa-js.github.io/nexa/#/)
+
+## Contribution
+
+We welcome contributions to the Nexa project! If you’d like to contribute, please follow these steps:
+
+1. **Fork the repository** and create a branch for your changes.
+2. **Clone your fork** to your local machine and create your changes.
+3. **Commit your changes** with a clear description.
+4. **Push your changes** to your fork.
+5. **Open a pull request (PR)** to the main repository, describing the changes you made.
+6. Be responsive to feedback, and if necessary, make changes based on the review.
+
+For more details, check out the full [Contribution Guide](https://nexa-js.github.io/nexa/#/contribution).
+
+### Code Style & Best Practices
+
+- Use consistent **camelCase** for variables and functions, and **PascalCase** for components and schemas.
+- Ensure your code is well-documented and adheres to the existing coding standards.
+- Write tests for any new features or bug fixes.
+- Keep commit messages clear and descriptive.
 
 ---
 
 ## License
 
-This project is licensed under the **Apache 2.0 License** – see the [LICENSE](./LICENSE) file for details.
+Nexa is open-source and available under the [Apache 2.0 License](https://opensource.org/licenses/Apache-2.0).
 
----
-
-## Community
-
-Join the conversation or contribute to the project by opening issues or submitting pull requests. We welcome feedback and contributions from the community!
