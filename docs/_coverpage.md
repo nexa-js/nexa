@@ -4,14 +4,11 @@
 
 # Nexa <small>1.0</small>
 
-> Flexible API orchestration layer for seamless frontend-backend integration, data aggregation, and optimized API delivery.
+> Simplifying API Orchestration for Frontend Development
 
-Modern web applications require seamless frontend-backend communication, but traditional API development creates bottlenecks:
-
-- Frontend teams are blocked while waiting for backend endpoints.
-- Backend teams struggle to predict frontend data requirements.
-- Over-fetching and under-fetching make APIs inefficient.
-- Security, caching, and transformations require extra effort.
+- Streamline frontend-backend communication
+- Auto-mocking, validation, and testing
+- Easy API development and documentation
 
 [GitHub](https://github.com/nexa-js/nexa/)
 [Get Started](/intro)
