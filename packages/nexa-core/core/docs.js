@@ -17,6 +17,7 @@ export const generateOpenApi = () => {
 
         const { query, params, body } = requestSchema;
         const { response, pagination } = responseSchema;
+        let paginationSchema = undefined;
 
         let config = {};
 
@@ -54,6 +55,13 @@ export const generateOpenApi = () => {
                     limit,
                 });
             }
+
+            paginationSchema = z.object({
+                page: z.number().openapi({ example: 10 }),
+                perPage: z.number().openapi({ example: 10 }),
+                totalPages: z.number().openapi({ example: 10 }),
+                totalRecords: z.number().openapi({ example: 10 }),
+            });
         }
 
         if (body) {
@@ -65,11 +73,26 @@ export const generateOpenApi = () => {
         }
 
         if (response) {
+            let schema = z.object({
+                status: z.number().openapi({ example: 200 }),
+                // pagination: paginationSchema,
+                data: response,
+                // errors,
+            })
+
+            if(pagination) {
+                schema = schema.extend({
+                    pagination: paginationSchema,
+                });
+            }
+
             config.responses = {
                 '200': {
                     description: '200 OK',
                     content: {
-                        'application/json': { schema: response },
+                        'application/json': {
+                            schema,
+                        },
                     },
                 },
             }

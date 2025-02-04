@@ -159,7 +159,7 @@ const schemaMockHandler = async (schema, req, res, data) => {
     }
 
     let responseData = null;
-    let responsePatination = null;
+    let responsePatination = undefined;
 
     if(data) {
         responseData = data;

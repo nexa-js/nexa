@@ -44,9 +44,15 @@ const generateRoutes = async (directory) => {
 
             nexa.makeRoute = (method, schemas, handler, options) => {
                 NexaLogger.info(`Route created: [${method}] ${routePath}`);
+
+                if (!Array.isArray(schemas)) {
+                    schemas = [schemas, null];
+                }
+                
                 const responseSchema = findSchema(schemas?.[1]) || findSchema(schemas?.[0]);
 
-                if (!responseSchema?.response) {
+                if (!schemas?.[1] && !responseSchema?.response) {
+                    console.log(responseSchema)
                     throw new Error(`Route [${method}] ${routePath} is missing a valid response schema with a 'response' property.`);
                 }
 
