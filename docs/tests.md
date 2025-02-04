@@ -20,9 +20,11 @@ nexa.schema("ExampleSchema", {
 ```
 
 
-## Writing Tests
+## Schema-Based Testing with Mocks
 
 Tests are an essential part of ensuring that your APIs work as expected. Nexa makes it easy to define these tests directly in your route definitions.
+
+Nexa tests run on **mocked data**, ensuring API responses match the defined schemas. When mocks are replaced with actual logic, tests continue validating responses against the same schemas, ensuring the expected format remains consistent.
 
 You can define a test by adding the `tests` option when creating a route. Each test contains the input parameters (`query`, `body`, etc.) and the expected response schema. Nexa will run these tests using `nexa test` or `npm/yarn run test` in case you've created project using `npx`
 
@@ -70,6 +72,32 @@ nexa.get("ExampleSchemaWithTest", (req, res) => {
 
 
 In this case, the route will be tested three times with different `query` values, ensuring that the business logic works for multiple scenarios.
+
+### Example: Mocking in Nexa
+
+Nexa provides a setup parameter inside test definitions, allowing developers to prepare necessary mocks before executing the test. This ensures that external services, databases, or any dependencies are correctly simulated, making tests fully isolated and predictable.
+```javascript
+nexa.post("ExampleSchemaWithTest", async (req, res) => {
+    const userResponse = await fetch('https://api.example.com/users/1');
+    const userData = await userResponse.json();
+    return userData;
+}, {
+    tests: [
+        {
+            body: { name: "John Doe", email: "john@nexa.com" },
+            setup: async () => {
+                nock('https://api.example.com')
+                    .get('/users/1')
+                    .reply(200, { id: 1, name: 'John Doe' });
+                global.mockDatabase = {
+                    users: [{ id: 1, name: "John Doe", email: "john@nexa.com" }]
+                };
+            }
+        },
+    ]
+});
+```
+
 
 ## Summary
 

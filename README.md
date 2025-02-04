@@ -15,6 +15,26 @@ Modern web applications require seamless frontend-backend communication, but tra
 
 **Nexa** solves this by acting as an intelligent API layer between frontend and backend. It enables parallel development by letting frontend teams define data needs dynamically, while backend teams focus on integrating data sources.
 
+## Development Workflow with Nexa
+
+Nexa follows a **Schema-Driven Development** approach, reducing miscommunication between frontend and backend teams. Schemas serve as contracts, ensuring both teams have a clear understanding of data structures and API behaviors.
+1. **Frontend developers define schemas & endpoints**
+    - They declare API schemas (`query`, `body`, `response`) in the repo.
+    - Nexa automatically generates **mock APIs**, allowing frontend work to proceed **without waiting for backend implementation**.
+    - These schemas act as a **contract** for how the backend should behave.
+
+2. **Backend developers implement logic**
+    - When ready, backend developers use the existing schemas as **technical specifications**.
+    - They **replace mocks with real logic**, ensuring seamless integration while maintaining consistency.
+
+### Why Schema-Driven Development Helps:
+- **Parallel Development:** Frontend & backend work independently with clear expectations.
+- **Less Miscommunication:** Schemas define data contracts, preventing mismatches.
+- **Faster Integration:** Mock APIs ensure frontend remains functional before backend is ready.
+- **Validation & Testing:** Nexa enforces data integrity, reducing API errors.
+
+This approach ensures a **smooth, efficient, and predictable development process**, making API collaboration effortless. 🚀
+
 ## Key Features
 
 - **Schema-based**: Uses Zod for validation and auto-mocking.

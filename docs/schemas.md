@@ -12,29 +12,54 @@ Nexa uses Zod to validate and shape your API data. Here's how:
 - **Response**: Make sure the data your API sends back is formatted correctly.
 - **Mock Data**: Nexa can even generate mock data using Zod for when you don’t have a backend ready yet.
 
+
+## Table: Schema Parameters & Descriptions
+
+### Request schema
+| Parameter  	|                                    Description                                    |
+|:-------------:|:---------------------------------------------------------------------------------:|
+| `static`        | Whether mock data is based on input params or always the same. Default is `true`. |
+| `pagination`    |         Configuration for pagination (e.g., `limits`). Default is `null`.         |
+| `query`      	|       Zod configuration to validate query parameters (e.g., `?test=value`).       |
+| `body`      	|             Zod configuration to validate the request body (`JSON`).              |
+
+### Response schema (mandatory)
+| Parameter  	|                            Description                            |
+|:-------------:|:-----------------------------------------------------------------:|
+| `response`   	| Zod configuration to validate the response data. Mandatory field. |
+
+
 ## Defining a Schema
 
 To define a schema in Nexa, we use the `nexa.schema` function. You just need to give it a name and tell it how you want the data to be structured and validated. Here’s a basic example:
 
 ```javascript
-nexa.schema("ExampleSchema", {
+const body = z.object({
+    name: z.string(),
+    age: z.number(),
+    email: z.string().email(),  // email must be a valid email format
+})
+
+nexa.schema("RequestExampleSchema", {
     static: false,  // mock data can change based on input
     pagination: { limits: [10, 20, 50] },  // pagination options
     query: z.object({
         test: z.string()  // query parameter: "test" must be a string
     }),
-    body: z.object({
-        name: z.string(),
-        age: z.number(),
-        email: z.string().email(),  // email must be a valid email format
+    params: z.object({
+        some_id: z.number().positive() // dynamic parameter [some_id] must be a positive number
     }),
-    response: z.object({
-        id: z.number(),
-        name: z.string(),
-        age: z.number(),
-        email: z.string().email(),
+    body: body
+});
+
+// exdending body by adding id field to response
+nexa.schema("ResponseExampleSchema", {
+    response: body.extend({
+        id: z.number()
     })
 });
+
+nexa.get(["RequestExampleSchema", "ResponseExampleSchema"]);
 ```
 
 ## Schema Example (Inline, Variable, String-Based)
@@ -66,12 +91,14 @@ You can also create a schema in a separate file in `/schemas` folder and then im
 
 ```javascript
 // In schemas/example.js
-export const ExampleSchema = z.object({
-    id: z.number(),
-    name: z.string(),
-    age: z.number(),
-    email: z.string().email(),
-});
+export const ExampleSchema = {
+    response: z.object({
+        id: z.number(),
+        name: z.string(),
+        age: z.number(),
+        email: z.string().email()
+    })
+};
 ```
 
 **In routes/example.js**
@@ -111,12 +138,17 @@ You can define a schema once and use it in as many routes as you want.
 
 ```javascript
 // In schemas/example.js
-export const ExampleSchema = z.object({
-    id: z.number(),
-    name: z.string(),
-    age: z.number(),
-    email: z.string().email(),
-});
+export const ExampleSchema = {
+    response: z.object({
+        id: z.number(),
+        name: z.string(),
+        age: z.number(),
+        email: z.string().email()
+    }),
+    body: z.object({
+        name: z.string(),
+    })
+};
 
 // In your route files
 nexa.get(ExampleSchema);
@@ -138,15 +170,5 @@ nexa.post(ExampleSchema, (req, res) => {
     return { id: 2, name: "Jane Smith", age: 25, email: "jane@nexa.com" };
 });
 ```
-
-## Table: Schema Parameters & Descriptions
-
-| Parameter  	| Description |
-|:-------------:|:-----------:|
-| `static`        | Whether mock data is based on input params or always the same. Default is `true`. |
-| `pagination`    | Configuration for pagination (e.g., `limits`). Default is `null`. |
-| `query`      	| Zod configuration to validate query parameters (e.g., `?test=value`). |
-| `body`      	| Zod configuration to validate the request body (`JSON`). |
-| `response`   	| Zod configuration to validate the response data. |
 
 💡 Next Step: Explore [Nexa Testing & Validation](/tests)! 🚀
