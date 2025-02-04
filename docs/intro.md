@@ -26,13 +26,13 @@ Modern applications require seamless frontend-backend communication, but API dev
 
 ### 🚀 How Nexa Solves These Problems  
 Nexa automates many aspects of API development, allowing developers to focus on building features rather than managing infrastructure:  
-✅ **Schema-Based API Definitions** – Use **Zod schemas** to enforce request and response formats automatically.  
-✅ **Instant API Mocking** – Generate mock data without writing additional logic.  
-✅ **File-Based Routing** – Define API endpoints using a simple file structure.  
-✅ **Automatic OpenAPI Documentation** – Swagger UI is generated from your route definitions.  
-✅ **Built-In Pagination & Filtering** – Handle complex data structures easily.  
-✅ **Middleware Support** – Add authentication, rate limiting, or custom logic seamlessly.  
-✅ **Effortless Backend-Driven Testing** – Define API tests in just **5 lines of code** to validate backend responses match frontend expectations.  
+- **Schema-Based API Definitions** – Use **Zod schemas** to enforce request and response formats automatically.  
+- **Instant API Mocking** – Generate mock data without writing additional logic.  
+- **File-Based Routing** – Define API endpoints using a simple file structure.  
+- **Automatic OpenAPI Documentation** – Swagger UI is generated from your route definitions.  
+- **Built-In Pagination & Filtering** – Handle complex data structures easily.  
+- **Middleware Support** – Add authentication, rate limiting, or custom logic seamlessly.  
+- **Effortless Backend-Driven Testing** – Define API tests in just **5 lines of code** to validate backend responses match frontend expectations.  
 
 
 ## Key Features  

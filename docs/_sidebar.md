@@ -13,4 +13,8 @@
 * [Advanced Topics](advanced-topics.md)
 * [Deployment & Production Setup](deployment.md)
 * [Contribution Guide](contribution.md)
+- **Links**
+- [Github](https://github.com/nexa-js/nexa)
+- [NPM Core](https://www.npmjs.com/package/@nexa-js/nexa-core)
+- [NPM Starter](https://www.npmjs.com/package/@nexa-js/nexa-starter)
 
