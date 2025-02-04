@@ -6,12 +6,7 @@ Nexa is a cloud-native **Backend-for-Frontend (BFF)** framework designed to stre
 
 ## Why Nexa?
 
-Modern web applications require seamless frontend-backend communication, but traditional API development creates bottlenecks:
-
-- Frontend teams are blocked while waiting for backend endpoints.
-- Backend teams struggle to predict frontend data requirements.
-- Over-fetching and under-fetching make APIs inefficient.
-- Security, caching, and transformations require extra effort.
+Modern web applications require seamless frontend-backend communication, but traditional API development creates bottlenecks.
 
 | Before Nexa: | After Implementing Nexa: |
 | ------------ | ------------------------ |
