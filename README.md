@@ -1,5 +1,7 @@
 # Nexa - The Future of API Orchestration for Frontend Development
 
+[Docs](https://nexa-js.github.io/nexa) • [Examples](https://github.com/nexa-js/nexa/tree/main/examples)
+
 Nexa is a cloud-native **Backend-for-Frontend (BFF)** framework designed to streamline frontend-backend communication. It enables rapid API development with built-in mocking, validation, testing, documentation, and data aggregation.
 
 ## Why Nexa?
