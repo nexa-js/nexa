@@ -6,6 +6,8 @@ import { z } from 'zod';
 
 import { NexaLogger } from './logger.js';
 import { NEXA_MAIN_LOCATION } from '../utils/env.js';
+import { pathToFileURL } from 'url';
+
 
 const routesFolder = path.join(NEXA_MAIN_LOCATION, '../schemas');
 
@@ -24,7 +26,7 @@ const generateSchemas = async (app, directory) => {
         if (stat.isDirectory()) {
             await generateSchemas(app, fullPath);
         } else if (file.endsWith('.js')) {
-            await import(fullPath);
+            await import(pathToFileURL(fullPath).href);
         }
     };
 };

@@ -3,6 +3,8 @@ import path from 'path';
 import { UnifiedResponse } from './responses.js';
 import { NexaLogger } from './logger.js';
 import { NEXA_MAIN_LOCATION } from '../utils/env.js';
+import {pathToFileURL} from "url";
+import { findSchema } from '../utils/schemas.js';
 
 const routesFolder = path.join(NEXA_MAIN_LOCATION, '../routes');
 
@@ -39,9 +41,14 @@ const generateRoutes = async (directory) => {
             await generateRoutes(fullPath);
         } else if (file.endsWith('.js')) {
             const routePath = convertToRoutePath(fullPath);
-            
+
             nexa.makeRoute = (method, schemas, handler, options) => {
                 NexaLogger.info(`Route created: [${method}] ${routePath}`);
+                const responseSchema = findSchema(schemas?.[1]) || findSchema(schemas?.[0]);
+
+                if (!responseSchema?.response) {
+                    throw new Error(`Route [${method}] ${routePath} is missing a valid response schema with a 'response' property.`);
+                }
 
                 NexaRoutes.push({
                     method: method.toLowerCase(),
@@ -56,10 +63,9 @@ const generateRoutes = async (directory) => {
                     await UnifiedResponse(req, res, schemas, handler, options);
                 });
             }
-
-            await import(fullPath);
+            await import(pathToFileURL(fullPath).href);
         }
-    };
+    }
 };
 
 export const makeNexaRoutes = async () => {

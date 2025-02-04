@@ -17,6 +17,7 @@ nexa.schema("StaticMockSchema", {
         name: z.string(),
     }),
 });
+nexa.get("StaticMockSchema");
 ```
 
 In this example, the mock response will always return the same values, regardless of the input.
