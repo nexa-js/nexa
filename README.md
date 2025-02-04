@@ -13,6 +13,12 @@ Modern web applications require seamless frontend-backend communication, but tra
 - Over-fetching and under-fetching make APIs inefficient.
 - Security, caching, and transformations require extra effort.
 
+| Before Nexa: | After Implementing Nexa: |
+| ------------ | ------------------------ |
+| Frontend and backend teams often find themselves in a loop of clarifications, leading to delays. | Frontend teams can define and work with API routes instantly, enabling parallel development. |
+| Frontend developers wait for backend APIs to be implemented before they can proceed, causing project slowdowns. |  Backend teams can later integrate business logic, ensuring it aligns with the predefined schemas. |
+| Discrepancies in data formats and structures between teams lead to integration issues. | With clear contracts and mock data, both teams work more efficiently, reducing the need for constant communication. |
+
 **Nexa** solves this by acting as an intelligent API layer between frontend and backend. It enables parallel development by letting frontend teams define data needs dynamically, while backend teams focus on integrating data sources.
 
 ## Development Workflow with Nexa

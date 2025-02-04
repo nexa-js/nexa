@@ -1,5 +1,13 @@
 # 📖 Introduction to Nexa  
 
+The dynamic between frontend and backend teams often leads to miscommunication and delays
+
+| Before Nexa: | After Implementing Nexa: |
+| ------------ | ------------------------ |
+| Frontend and backend teams often find themselves in a loop of clarifications, leading to delays. | Frontend teams can define and work with API routes instantly, enabling parallel development. |
+| Frontend developers wait for backend APIs to be implemented before they can proceed, causing project slowdowns. |  Backend teams can later integrate business logic, ensuring it aligns with the predefined schemas. |
+| Discrepancies in data formats and structures between teams lead to integration issues. | With clear contracts and mock data, both teams work more efficiently, reducing the need for constant communication. |
+
 ## Overview  
 
 Nexa is an open-source **Backend-for-Frontend (BFF)** framework that simplifies API development, mocking, and schema validation using **Zod**. It is designed to bridge the gap between frontend and backend development by providing a **file-based API structure**, **automatic request validation**, **testing capabilities**, and **auto-generated documentation**.  
