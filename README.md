@@ -92,6 +92,14 @@ Check out the examples for different route setups and configurations in the Nexa
 
 [Examples in Nexa Starter](https://nexa-js.github.io/nexa/#/)
 
+## Plans
+
+- [x] MVP Release – Core features implemented and ready to use 🎉
+- [ ] Backend Connectors – Seamless integration with databases and external APIs
+- [ ] Web UI for API Management – Easily configure and monitor APIs visually
+- [ ] Cloud Version – Fully managed deployment for hassle-free usage
+- [ ] AI-Powered Connectors & Logic – Automate connector generation and business logic with AI
+
 ## Contribution
 
 We welcome contributions to the Nexa project! If you’d like to contribute, please follow these steps:
