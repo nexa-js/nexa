@@ -1,6 +1,6 @@
 # Nexa - The Future of API Orchestration for Frontend Development
 
-[Docs](https://nexa-js.github.io/nexa) • [Examples](https://github.com/nexa-js/nexa/tree/main/examples)
+[Docs](https://nexa-js.github.io/nexa) • [Examples](https://github.com/nexa-js/nexa/tree/main/packages/nexa-starter)
 
 Nexa is a cloud-native **Backend-for-Frontend (BFF)** framework designed to streamline frontend-backend communication. It enables rapid API development with built-in mocking, validation, testing, documentation, and data aggregation.
 
@@ -90,7 +90,7 @@ There are two main entities: `schemas` and `routes`. The entry point is `index.j
 
 Check out the examples for different route setups and configurations in the Nexa Starter project:
 
-[Examples in Nexa Starter](https://nexa-js.github.io/nexa/#/)
+[Examples in Nexa Starter](https://github.com/nexa-js/nexa/tree/main/packages/nexa-starter)
 
 ## Plans
 
