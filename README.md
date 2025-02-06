@@ -1,3 +1,5 @@
+[![npm version](https://img.shields.io/npm/v/@nexa-js/nexa-core?color=blue&label=Nexa)](https://www.npmjs.com/package/@nexa-js/nexa-core)
+
 # Nexa - The Future of API Orchestration for Frontend Development
 
 [Docs](https://nexa-js.github.io/nexa) • [Examples](https://github.com/nexa-js/nexa/tree/main/packages/nexa-starter)
