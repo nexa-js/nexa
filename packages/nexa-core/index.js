@@ -1,6 +1,5 @@
 import env from './utils/env.js'
-import express from 'express'
-const app = express()
+import { app, httpServer } from './core/express.js';
 
 const port = env.NEXA_PORT;
 
@@ -9,13 +8,14 @@ import { makeNexaSchemas } from './core/schemas.js';
 import { makeSwagger } from './core/docs.js';
 import { registerNexaHelpers } from './core/helpers.js';
 import { runTests } from './core/tests.js';
+import { makeNexaGraphQL } from './core/graphql/index.js';
 
 const runApplication = async () => {
   registerNexaHelpers(app);
   await makeNexaSchemas(app);
   await makeNexaRoutes(app);
 
-  if(env.NEXA_DOCS) {
+  if (env.NEXA_DOCS) {
     await makeSwagger(app);
   }
 }
@@ -29,9 +29,9 @@ export const launchNexa = async (callback) => {
   if (isTesting) {
     await runTests();
   } else {
-    app.listen(port, () => {
-      nexa.logger.info(`Nexa listening on port ${port}`)
-    })
+    await makeNexaGraphQL(app);
+    await new Promise((resolve) => httpServer.listen({ port, }, resolve));
+    console.log(`🚀 Nexa ready at http://localhost:${port}`);
   }
 
   if (callback) {
